@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="/Content/css/styles.css">
+		<title>Hair Salon</title>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="jumbotron">
+					<h1>TASKS TRACKER</h1>
+				</div>
+				<div class="row">
+
+          <h1>To Do List</h1>
+          <h2>Category: @Model["category"].GetName()</h2>
+          <hr />
+          @if (@Model["categoryTasks"].Count != 0)
+          {
+            <h4>Here are all the tasks in this category:</h4>
+            <ul>
+              @foreach (var task in @Model["categoryTasks"])
+              {
+                <li>@task.GetDescription()</li>
+              }
+            </ul>
+          }
+          <h4>Add a task to this category:</h4>
+          <form action='/category/add_task' method='post'>
+            <input id='category-id' name='category-id' type='hidden' value='@Model["category"].GetId()'>
+            <label for='task-id'>Select a task</label>
+            <select id='task-id' name='task-id' type='text'>
+              @foreach (var task in @Model["allTasks"])
+              {
+                <option value='@task.GetId()'>@task.GetDescription()</option>
+              }
+            </select>
+            <button type='submit'>Add</button>
+          </form>
+          <p><a href="/">Return to Main Page</a></p>
+
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
