@@ -150,6 +150,18 @@ namespace Registrar
       Assert.Equal(testList, result);
     }
 
+    [Fact]
+    public void Update_UpdateCourseNameAndNumber_NameAndNumberUpdatedInDatabase()
+    {
+      Course testCourse = new Course("History", "HIST100");
+      testCourse.Save();
+
+      testCourse.Update("Japanese", "JAPN100");
+      Course result = Course.GetAll()[0];
+
+      Assert.Equal(result, testCourse);
+    }
+
     // [Fact]
     // public void Test_Delete_DeletesCourseAssociationsFromDatabase()
     // {

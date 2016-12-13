@@ -140,6 +140,48 @@ namespace Registrar.Objects
       return foundCourse;
     }
 
+
+    public void Update(string newName, string newNumber)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("UPDATE courses SET name = @newName, number = @newNumber OUTPUT INSERTED.name, INSERTED.number WHERE id = @CourseId;", conn);
+
+      SqlParameter courseNameParameter = new SqlParameter();
+      courseNameParameter.ParameterName = "@newName";
+      courseNameParameter.Value = newName;
+      cmd.Parameters.Add(courseNameParameter);
+
+      SqlParameter numberParameter = new SqlParameter();
+      numberParameter.ParameterName = "@newNumber";
+      numberParameter.Value = newNumber;
+      cmd.Parameters.Add(numberParameter);
+
+
+      SqlParameter courseIdParameter = new SqlParameter();
+      courseIdParameter.ParameterName = "@CourseId";
+      courseIdParameter.Value = this.Id;
+      cmd.Parameters.Add(courseIdParameter);
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+       this.Name = rdr.GetString(0);
+       this.Number = rdr.GetString(1);
+      }
+
+      if (rdr != null)
+      {
+       rdr.Close();
+      }
+
+      if (conn != null)
+      {
+       conn.Close();
+      }
+    }
+
     public void Delete()
     {
       SqlConnection conn = DB.Connection();

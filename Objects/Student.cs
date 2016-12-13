@@ -225,6 +225,47 @@ namespace Registrar.Objects
       return courses;
     }
 
+    public void Update(string newName, string newDate)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("UPDATE students SET name = @newName, date = @newDate OUTPUT INSERTED.name, INSERTED.date WHERE id = @StudentId;", conn);
+
+      SqlParameter courseNameParameter = new SqlParameter();
+      courseNameParameter.ParameterName = "@newName";
+      courseNameParameter.Value = newName;
+      cmd.Parameters.Add(courseNameParameter);
+
+      SqlParameter dateParameter = new SqlParameter();
+      dateParameter.ParameterName = "@newDate";
+      dateParameter.Value = newDate;
+      cmd.Parameters.Add(dateParameter);
+
+
+      SqlParameter studentIdParameter = new SqlParameter();
+      studentIdParameter.ParameterName = "@StudentId";
+      studentIdParameter.Value = this.Id;
+      cmd.Parameters.Add(studentIdParameter);
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+       this.Name = rdr.GetString(0);
+       this.Date = rdr.GetDateTime(1).ToShortDateString();
+      }
+
+      if (rdr != null)
+      {
+       rdr.Close();
+      }
+
+      if (conn != null)
+      {
+       conn.Close();
+      }
+    }
+
     public static void DeleteAll()
     {
       SqlConnection conn = DB.Connection();

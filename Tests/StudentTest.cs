@@ -146,6 +146,18 @@ namespace  Registrar
       Assert.Equal(testCourseStudents, resultCourseStudents);
     }
 
+    [Fact]
+    public void Update_UpdateStudentNameAndDate_NameAndDateUpdatedInDatabase()
+    {
+      Student testStudent = new Student("Annie", "3/2/2014");
+      testStudent.Save();
+
+      testStudent.Update("Bryant", "4/9/2013");
+      Student result = Student.GetAll()[0];
+
+      Assert.Equal(result, testStudent);
+    }
+
     public void Dispose()
     {
       Student.DeleteAll();
