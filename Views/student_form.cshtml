@@ -1,0 +1,19 @@
+@{
+	Layout="Shared/_Layout.cshtml";
+}
+
+<h1>New Student Registration</h1>
+<h2>Add a student</h2>
+<form action="/students/new" method="post">
+	<div class="form-group">
+	  <label for="student-name">Student Name:</label>
+	  <input id="student-name" name="student-name" type="text" placeholder="Steven" required autofocus>
+	</div>
+	<div class="form-group">
+	  <label for="student-date">Student Enrollment Date:</label>
+	  <input id="student-date" name="student-date" type="text" pattern="\d+/\d+/\d{4}" title="mm/dd/yyyy" placeholder="12/12/2012">
+	</div>
+  <button type="submit">Add new student</button>
+</form>
+<p><a href="/">Back home</a></p>
+<p><a href="/students">View all students</a></p>

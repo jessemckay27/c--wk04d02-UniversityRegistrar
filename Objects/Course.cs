@@ -8,8 +8,8 @@ namespace Registrar.Objects
   {
 
     public int Id {get; set;}
-    private string Name {get; set;}
-    private string Number {get; set;}
+    public string Name {get; set;}
+    public string Number {get; set;}
 
     public Course(string name, string number, int id = 0)
     {

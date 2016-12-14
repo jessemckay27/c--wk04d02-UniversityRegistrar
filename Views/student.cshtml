@@ -1,0 +1,36 @@
+@{
+	Layout="Shared/_Layout.cshtml";
+}
+
+<h1>Student and Enrolled Courses</h1>
+<h2>Student: @Model.Name</h2>
+<hr />
+@if (@Model.GetCourses().Count != 0)
+{
+  <h4>This student is enrolled in these courses:</h4>
+  <ul>
+    @foreach (var course in @Model.GetCourses())
+    {
+      <li><a href="/course/@course.Id">@course.Name</a></li>
+    }
+  </ul>
+}
+else
+{
+	<h4>This student is not enrolled in any courses.</h4>
+}
+@* <h4>Add a category to this task:</h4>
+<form action='/task/add_category' method='post'>
+  <input id='task-id' name='task-id' type='hidden' value='@Model["task"].GetId()'>
+  <label for='category-id'>Select a category</label>
+  <select id='category-id' name='category-id' type='text'>
+    @foreach (var category in @Model["allCategories"])
+    {
+      <option value='@category.GetId()'>@category.GetName()</option>
+    }
+  </select>
+  <button type='submit'>Add</button>
+</form> *@
+
+<p><a href="/">Return to Main Page</a></p>
+<p><a href="/student/@Model.Id/courses/add">Click here to enroll student to courses</a></p>

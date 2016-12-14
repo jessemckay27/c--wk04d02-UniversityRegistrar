@@ -1,0 +1,18 @@
+@{
+	Layout="Shared/_Layout.cshtml";
+}
+
+<h1>Enrolled Students</h1>
+<hr />
+<h2>Students:</h2>
+@if (Model.Count != 0)
+{
+  <ul>
+    @foreach (var student in Model)
+    {
+      <li><a href='/student/@student.Id'>@student.Name, @student.Date</a></li>
+    }
+  </ul>
+}
+<h4><a href="/students/new">Add new student</a></h4>
+<h4><a href="/">Return home</a></h4>

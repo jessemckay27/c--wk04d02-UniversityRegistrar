@@ -1,0 +1,19 @@
+@{
+	Layout="Shared/_Layout.cshtml";
+}
+
+<h1>You added a student to @Model.Name</h1>
+<hr />
+@if (@Model.GetStudents().Count != 0)
+{
+  <h4>Here are all the students registered in this course:</h4>
+  <ul>
+    @foreach (var student in @Model.GetStudents())
+    {
+      <li><a href="/student/@student.Id">@student.Name</a></li>
+    }
+  </ul>
+}
+
+<p><a href="/">Return to Main Page</a></p>
+<p><a href="/course/@Model.Id/students/add">Click here to add students to this course</a></p>

@@ -1,0 +1,17 @@
+@{
+	Layout="Shared/_Layout.cshtml";
+}
+
+<h1>Add a Student to @Model["course"].Name</h1>
+
+<h4>Add a student to this course:</h4>
+<form action="/course/@Model["course"].Id/students/added" method="post">
+  <label for="student-id">Select a student: </label>
+  <select id="student-id" name="student-id" type="text">
+  @foreach (var student in @Model["available-students"])
+  {
+    <option value="@student.Id">@student.Name</option>
+  }
+  </select>
+  <button type="submit">Add</button>
+</form>

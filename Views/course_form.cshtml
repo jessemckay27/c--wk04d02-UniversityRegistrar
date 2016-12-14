@@ -1,0 +1,19 @@
+@{
+	Layout="Shared/_Layout.cshtml";
+}
+
+<h1>New Course Registration</h1>
+<h2>Add a course</h2>
+<form action="/courses/new" method="post">
+	<div class="form-group">
+	  <label for="course-name">Course Name:</label>
+	  <input id="course-name" name="course-name" type="text" placeholder="History" required autofocus>
+	</div>
+	<div class="form-group">
+	  <label for="course-number">Course Number:</label>
+	  <input id="course-number" name="course-number" type="text" pattern="[A-Z]{4}\d{3}" title="XXXX000" placeholder="HIST101">
+	</div>
+  <button type="submit">Add new course</button>
+</form>
+<p><a href="/">Back home</a></p>
+<p><a href="/courses">View all courses</a></p>
