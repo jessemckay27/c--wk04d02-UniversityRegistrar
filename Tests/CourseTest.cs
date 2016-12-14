@@ -56,7 +56,7 @@ namespace Registrar
 
       Assert.Equal(testId, result);
     }
-    
+
     // [Fact]
     // public void Find_FindsCourseInDatabase_true()
     // {
@@ -87,26 +87,26 @@ namespace Registrar
     //
     //   Assert.Equal(testCourseList, resultCategories);
     // }
-    //
-    // [Fact]
-    // public void GetStudents_ReturnsAllCourseStudent_studentList()
-    // {
-    //   Course testCourse = new Course("History", "HIST100");
-    //   testCourse.Save();
-    //
-    //   Student testStudent1 = new Student("Annie", "3/2/2014");
-    //   testStudent1.Save();
-    //
-    //   Student testStudent2 = new Student("Bryant", "4/9/2014");
-    //   testStudent2.Save();
-    //
-    //   testCourse.AddStudent(testStudent1);
-    //   List<Student> savedStudent = testCourse.GetStudents();
-    //   List<Student> testList = new List<Student> {testStudent1};
-    //
-    //   Assert.Equal(testList, savedStudent);
-    // }
-    //
+
+    [Fact]
+    public void GetStudents_ReturnsAllCourseStudent_studentList()
+    {
+      Course testCourse = new Course("History", "HIST100");
+      testCourse.Save();
+
+      Student testStudent1 = new Student("Annie", "3/2/2014");
+      testStudent1.Save();
+
+      Student testStudent2 = new Student("Bryant", "4/9/2014");
+      testStudent2.Save();
+
+      testCourse.AddStudent(testStudent1);
+      List<Student> savedStudent = testCourse.GetStudents();
+      List<Student> testList = new List<Student> {testStudent1};
+
+      Assert.Equal(testList, savedStudent);
+    }
+
     // [Fact]
     // public void AddStudent_AddsStudentToCourse_studentList()
     // {
